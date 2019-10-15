@@ -44,7 +44,7 @@ public class HttpDataManager {
 
         connection.disconnect();
 
-        s = br.toString(); // StringBuilder를 사용해 성능 향상
+        s = builder.toString(); // StringBuilder를 사용해 성능 향상
 
         return s.equals("null") ? null : new JSONObject(s);
     }
