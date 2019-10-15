@@ -2,7 +2,9 @@ package com.players.gif;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 
 import com.players.gif.DataManagers.DataFormatter;
 import com.players.gif.HttpManagers.HttpDataManager;
@@ -14,6 +16,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);//ASFdsfdsf
+        setContentView(R.layout.activity_main);
+
         JSONObject obj = new JSONObject();
         try {
             obj.put("id", "rladudwo0914@naver.com");
@@ -26,6 +30,12 @@ public class MainActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
         }).start();
-        setContentView(R.layout.activity_main);
+        Handler h = new Handler();
+        new Thread(()->{
+            try{
+                Thread.sleep(1000);
+                h.post(()->{startActivity(new Intent(this, LoginActivity.class));});
+            }catch (Exception e){e.printStackTrace();}
+        }).start();
     }
 }
