@@ -1,5 +1,7 @@
 package com.players.gif.HttpManagers;
 
+import android.util.Log;
+
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
@@ -45,7 +47,6 @@ public class HttpDataManager {
         connection.disconnect();
 
         s = builder.toString(); // StringBuilder를 사용해 성능 향상
-
         return s.equals("null") ? null : new JSONObject(s);
     }
 }
