@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">GIF</string>
+    <string name="facebook_app_id">508284143085553</string>
+    <string name="fb_login_protocol_scheme">fb508284143085553</string>
 </resources>

@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);//ASFdsfdsf
         setContentView(R.layout.activity_main);
 
-        JSONObject obj = new JSONObject();
+        /*JSONObject obj = new JSONObject();
         try {
             obj.put("id", "rladudwo0914@naver.com");
             obj.put("password", DataFormatter.getSHA512("danny12345!"));
@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        }).start();
+        }).start();*/
         Handler h = new Handler();
         new Thread(()->{
             try{
