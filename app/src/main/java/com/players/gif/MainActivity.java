@@ -17,14 +17,13 @@ import com.players.gif.ui.TestFragment;
 
 public class MainActivity extends AppCompatActivity {
 
-    private FragmentManager fragmentManager = getSupportFragmentManager();
+    /*private FragmentManager fragmentManager = getSupportFragmentManager();
     private TestFragment testFragment = new TestFragment();
-    private DashboardFragment dashboardFragment = new DashboardFragment();
+    private DashboardFragment dashboardFragment = new DashboardFragment();*/
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);//ASFdsfdsf
-        setContentView(R.layout.activity_main);
-        BottomNavigationView navView = findViewById(R.id.nav_view);
+        setContentView(R.layout.activity_main);/*BottomNavigationView navView = findViewById(R.id.nav_view);
 
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         transaction.replace(R.id.nav_host_fragment, testFragment).commitAllowingStateLoss();
