@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -14,6 +15,8 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -32,33 +35,74 @@ public class MainActivity extends AppCompatActivity {
     /*private FragmentManager fragmentManager = getSupportFragmentManager();
     private TestFragment testFragment = new TestFragment();
     private DashboardFragment dashboardFragment = new DashboardFragment();*/
-    private SignInButton googleSignInButton;
-    public static final String wantSignOut = "want_sign_out";
-    private GoogleSignInClient googleSignInClient;
+    public static final String GOOGLE_ACCOUNT = "google_account";
+    private final String TAG = "[MainActivity]";
+
+    SubtitleAdapter adapter;
+    RecyclerView listView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);//ASFdsfdsf
+        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        googleSignInButton = findViewById(R.id.sign_in_button);
-
-        googleSignInButton.setStyle(SignInButton.SIZE_WIDE, SignInButton.COLOR_AUTO);
-
-        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestId()
-                .requestEmail().requestProfile()
-                .build();
-        googleSignInClient = GoogleSignIn.getClient(this, gso);
-
-        googleSignInButton.setOnClickListener((v)->{
-            Intent signInIntent = googleSignInClient.getSignInIntent();
-            startActivityForResult(signInIntent, 101);
+        GoogleSignInAccount account = getIntent().getParcelableExtra(GOOGLE_ACCOUNT);
+        findViewById(R.id.signout).setOnClickListener((view)->{
+            Intent intent = new Intent(this, LoginActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP).putExtra(LoginActivity.wantSignOut, true);
+            startActivity(intent);
         });
-        if(getIntent().getBooleanExtra(wantSignOut, false)){
-            googleSignInClient.signOut().addOnSuccessListener((a)->{
-                Log.w("DATA : ", "SUCCESS");
-            });
-        }
+        listView = findViewById(R.id.listView);
+
+        listView.setLayoutManager(new LinearLayoutManager(this));
+
+        adapter = new SubtitleAdapter();
+
+        listView.setAdapter(adapter);
+
+        adapter.addItem();
+        adapter.addItem();
+        adapter.addItem();
+        adapter.addItem();
+        adapter.addItem();
+        adapter.addItem();
+        adapter.addItem();
+        adapter.addItem();
+        adapter.addItem();
+        adapter.addItem();
+        adapter.addItem();
+        adapter.addItem();
+        adapter.addItem();
+        adapter.addItem();
+        adapter.addItem();
+        adapter.addItem();
+        adapter.addItem();
+        adapter.addItem();
+        adapter.addItem();
+        adapter.addItem();
+        adapter.addItem();
+        adapter.addItem();
+        adapter.addItem();
+        adapter.addItem();
+        adapter.addItem();
+        adapter.addItem();
+        adapter.addItem();
+        adapter.addItem();
+        adapter.addItem();
+        adapter.addItem();
+        adapter.addItem();
+        adapter.addItem();
+        adapter.addItem();
+        adapter.addItem();
+        adapter.addItem();
+        adapter.addItem();
+        adapter.addItem();
+        adapter.addItem();
+        adapter.addItem();
+        adapter.addItem();
+        adapter.addItem();
+        adapter.addItem();
+    }
+
+
         /*BottomNavigationView navView = findViewById(R.id.nav_view);
 
         FragmentTransaction transaction = fragmentManager.beginTransaction();
@@ -86,40 +130,4 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);*/
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        System.out.println(requestCode + " / " + resultCode);
-        if(resultCode == Activity.RESULT_OK)
-            switch(requestCode){
-                case 101:
-                    try{
-                        Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
-                        GoogleSignInAccount account = task.getResult(ApiException.class);
-                        onLoggedIn(account);
-                    }catch(ApiException e){
-                        Log.w("ERROR", "SIGN IN RESULT FAILD CODE = " + e.getStatusCode());
-                    }
-                    break;
-            }
-    }
-    private void onLoggedIn(GoogleSignInAccount account){
-        Intent intent = new Intent(this, LoginActivity.class);
-        intent.putExtra(LoginActivity.GOOGLE_ACCOUNT, account);
-        startActivity(intent);
-        finish();
-    }
-    @Override
-    public void onStart(){
-        super.onStart();
-        GoogleSignInAccount alreadyLogin = GoogleSignIn.getLastSignedInAccount(this);
-        if(alreadyLogin != null){
-            Toast.makeText(this, "이미 로그인 하였습니다.", Toast.LENGTH_LONG).show();
-            onLoggedIn(alreadyLogin);
-        }else{
-            Log.d("DATA : ", "NOT LOGIN");
-        }
-    }
 }

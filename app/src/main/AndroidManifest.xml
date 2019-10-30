@@ -11,7 +11,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name=".MainActivity" android:label="NavigationViewTest"></activity>
+        <activity android:name=".page.BoardActivity"></activity>
+        <activity android:name=".RegisterActivity" />
+        <activity
+            android:name=".MainActivity"
+            android:label="NavigationViewTest" />
         <activity android:name=".TestActivity" />
         <activity android:name=".LoginActivity" />
         <activity
@@ -19,6 +23,7 @@
             android:noHistory="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

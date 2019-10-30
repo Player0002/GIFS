@@ -99,18 +99,11 @@
                 android:layout_marginTop="10dp"
                 android:text="회원가입"
                 android:id="@+id/registerButton"/>
-
-            <TextView
-                android:id="@+id/showData"
-                android:layout_width="match_parent"
+            <com.google.android.gms.common.SignInButton
+                android:id="@+id/sign_in_button"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="TextView" />
-
-            <ImageView
-                android:id="@+id/profileImage"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                tools:srcCompat="@tools:sample/avatars" />
+                android:layout_gravity="center" />
         </LinearLayout>
 
     </LinearLayout>
