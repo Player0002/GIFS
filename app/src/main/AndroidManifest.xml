@@ -16,8 +16,8 @@
         <activity android:name="New_Login_Register_Request.NewMainActivity"></activity>
         <activity android:name=".PostActivity" />
         <activity android:name=".page.BoardActivity" />
-        <activity android:name="New_Login_Register_Request.activity_newLogin" />
         <activity android:name="New_Login_Register_Request.activity_newRegister" />
+        <activity android:name="New_Login_Register_Request.activity_newLogin" />
         <activity android:name=".page.BoardActivity" />
         <activity android:name=".RegisterActivity" />
         <activity
