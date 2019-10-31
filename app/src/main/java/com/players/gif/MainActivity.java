@@ -1,34 +1,14 @@
 package com.players.gif;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.widget.ListView;
-import android.widget.Toast;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.gms.auth.api.signin.GoogleSignIn;
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
-import com.google.android.gms.auth.api.signin.GoogleSignInClient;
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.common.SignInButton;
-import com.google.android.gms.common.api.ApiException;
-import com.google.android.gms.tasks.Task;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.players.gif.ui.DashboardFragment;
-import com.players.gif.ui.TestFragment;
 
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -58,48 +38,8 @@ public class MainActivity extends AppCompatActivity {
 
         listView.setAdapter(adapter);
 
-        adapter.addItem();
-        adapter.addItem();
-        adapter.addItem();
-        adapter.addItem();
-        adapter.addItem();
-        adapter.addItem();
-        adapter.addItem();
-        adapter.addItem();
-        adapter.addItem();
-        adapter.addItem();
-        adapter.addItem();
-        adapter.addItem();
-        adapter.addItem();
-        adapter.addItem();
-        adapter.addItem();
-        adapter.addItem();
-        adapter.addItem();
-        adapter.addItem();
-        adapter.addItem();
-        adapter.addItem();
-        adapter.addItem();
-        adapter.addItem();
-        adapter.addItem();
-        adapter.addItem();
-        adapter.addItem();
-        adapter.addItem();
-        adapter.addItem();
-        adapter.addItem();
-        adapter.addItem();
-        adapter.addItem();
-        adapter.addItem();
-        adapter.addItem();
-        adapter.addItem();
-        adapter.addItem();
-        adapter.addItem();
-        adapter.addItem();
-        adapter.addItem();
-        adapter.addItem();
-        adapter.addItem();
-        adapter.addItem();
-        adapter.addItem();
-        adapter.addItem();
+        for(int i = 0; i < 100; i++) adapter.addItem();
+
     }
 
 

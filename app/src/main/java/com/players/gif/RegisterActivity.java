@@ -31,6 +31,9 @@ public class RegisterActivity extends AppCompatActivity {
 
     private TextView userName;
 
+    private boolean complete;
+    private TextView isCompleted;
+
     private boolean isError = true;
     private int currentalpha = 0;
     private Thread currentThread = null;
@@ -47,6 +50,8 @@ public class RegisterActivity extends AppCompatActivity {
         userName = findViewById(R.id.UserNameTV);
 
         userName.setText("사용자명에는 영어와 한글만 입력이 가능합니다.");
+
+        isCompleted = findViewById(R.id.isCompleted);
 
         text.addTextChangedListener(new TextWatcher() {
             @Override
@@ -80,11 +85,14 @@ public class RegisterActivity extends AppCompatActivity {
         });
 
         OkButton.setOnClickListener((v)->{
+            if(complete) return;
             if(isError) return;
             GoogleSignInAccount account = getIntent().getParcelableExtra(GOOGLE_ACCOUNT);
             Handler h = new Handler();
             new Thread(()->{
                 try{
+                    h.post(()->setOkText(isCompleted, "데이터를 처리하는중 입니다..."));
+                    complete = true;
                     JSONObject user = new JSONObject();
                     user.put("email", account.getEmail());
                     user.put("google", true);

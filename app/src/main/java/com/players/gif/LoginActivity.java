@@ -80,7 +80,7 @@ public class LoginActivity extends AppCompatActivity {
             try{
                 JSONObject data = new JSONObject();
                 data.put("email", account.getEmail());
-                JSONObject obj = HttpDataManager.postData("http://danny-dataserver.kro.kr:8080/canUseEmail", data);
+                JSONObject obj = HttpDataManager.postData("http://192.168.43.249:8080/canUseEmail", data);
                 System.out.println(account.getServerAuthCode());
                 boolean status = obj.getBoolean("status");
                 if (!status) {
