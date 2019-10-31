@@ -15,11 +15,12 @@ public class activity_newLogin extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_login);
 
-        TextView registerButton = (TextView) findViewById((R.id.registerButton));
+        TextView registerButton = (TextView) findViewById(R.id.registerButton);
         registerButton.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
-                Intent registerIntent = new Intent(activity_newLogin.this, RegisterActivity.class);
+                Intent registerIntent = new Intent(activity_newLogin.this, activity_newRegister.class);
                 activity_newLogin.this.startActivity(registerIntent);
             }
         });
