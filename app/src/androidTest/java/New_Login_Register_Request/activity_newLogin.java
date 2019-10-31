@@ -1,12 +1,13 @@
-package com.players.gif;
+package New_Login_Register_Request;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
+
+import com.players.gif.R;
 
 public class activity_newLogin extends AppCompatActivity {
 
