@@ -2,6 +2,7 @@ package com.players.gif;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -9,6 +10,17 @@ import androidx.recyclerview.widget.RecyclerView;
 
 
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.common.util.JsonUtils;
+import com.google.gson.Gson;
+import com.players.gif.DataManagers.UserInfo;
+import com.players.gif.HttpManagers.HttpDataManager;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -25,6 +37,31 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        new Thread(()->{
+            try {
+                UserInfo info = UserInfo.getInstance();
+                JSONObject object = new JSONObject();
+                object.put("id", info.getEmail());
+                object.put("password", "null");
+                object.put("isGoogle", true);
+                JSONObject obj = HttpDataManager.postData("http://danny-dataserver.kro.kr:8080/checkUser", object);
+                info.setGoogle(true);
+                JSONArray array = obj.get("groups").toString().equals("null") ? null : obj.getJSONArray("groups");
+                ArrayList<Long> data = new ArrayList<>();
+                if(array != null)
+                    for(int i = 0; i < array.length(); i++) data.add(array.getLong(i));
+                info.setGroups(data);
+                info.setProfileImgName(obj.get("profileImgName").toString());
+                info.setUsername(obj.getString("username"));
+                Log.w(TAG, obj.getString("when"));
+                Date date = new Date();
+                date.setTime(obj.getLong("when"));
+                info.setWhen(date);
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+        }).start();
+
         GoogleSignInAccount account = getIntent().getParcelableExtra(GOOGLE_ACCOUNT);
         findViewById(R.id.signout).setOnClickListener((view)->{
             Intent intent = new Intent(this, LoginActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP).putExtra(LoginActivity.wantSignOut, true);
@@ -39,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
         listView.setAdapter(adapter);
 
         for(int i = 0; i < 100; i++) adapter.addItem();
-
+        startActivity(new Intent(this, PostActivity.class));
     }
 
 

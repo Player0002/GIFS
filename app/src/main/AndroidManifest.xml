@@ -12,6 +12,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar"
         android:usesCleartextTraffic="true">
+        <activity android:name=".PostActivity"></activity>
+        <activity android:name=".page.BoardActivity" />
+        android:theme="@style/AppTheme.NoActionBar"
+        android:usesCleartextTraffic="true">
         <activity android:name=".activity_newLogin"></activity>
         <activity android:name=".activity_profile" />
         <activity android:name=".activity_newRegister" />

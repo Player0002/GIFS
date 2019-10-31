@@ -21,6 +21,7 @@ import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.tasks.Task;
+import com.players.gif.DataManagers.UserInfo;
 import com.players.gif.HttpManagers.HttpDataManager;
 import com.squareup.picasso.Picasso;
 
@@ -82,6 +83,7 @@ public class LoginActivity extends AppCompatActivity {
                 data.put("email", account.getEmail());
                 JSONObject obj = HttpDataManager.postData("http://192.168.43.249:8080/canUseEmail", data);
                 System.out.println(account.getServerAuthCode());
+                UserInfo.getInstance().setEmail(account.getEmail());
                 boolean status = obj.getBoolean("status");
                 if (!status) {
                     Intent intent = new Intent(this, MainActivity.class);
